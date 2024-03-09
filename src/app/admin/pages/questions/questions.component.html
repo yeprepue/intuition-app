@@ -1,0 +1,13 @@
+<div class="flex flex-column">
+  <span class="text-lg mb-4">Question</span>
+  <form [formGroup]="questionForm" (ngSubmit)="question()">
+    <mat-form-field>
+      <mat-label>Question</mat-label>
+      <input type="text" formControlName="question_name" matInput placeholder="Pregunta?">
+    </mat-form-field>
+    <button mat-button mat-flat-button color="primary">
+      <mat-icon>save</mat-icon>
+      Add
+    </button>
+  </form>
+</div>

@@ -1,1 +1,53 @@
-<p>register-page works!</p>
+<div class="flex flex-column">
+  <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
+    <span class="text-lg mb-4">Registro</span>
+
+    <mat-form-field>
+      <mat-label>Firstname</mat-label>
+      <input type="text" formControlName="firstname" matInput placeholder="Nombre de usuario">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Lastname</mat-label>
+      <input type="text" formControlName="lastname" matInput placeholder="Apellido de usuario">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input type="password" formControlName="password" matInput placeholder="Contraseña">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input type="email" formControlName="email" matInput placeholder="Email">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Country</mat-label>
+      <input type="text" formControlName="country" matInput placeholder="Country">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Role</mat-label>
+      <input type="text" formControlName="role" matInput placeholder="Role">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Phone</mat-label>
+      <input type="text" formControlName="phone" matInput placeholder="Phone">
+    </mat-form-field>
+
+    <mat-form-field *ngFor="let question of questionData; index as i">
+      <mat-label>{{question.question_name}}</mat-label>
+      <input type="text" formControlName="answer{{i}}" matInput>
+    </mat-form-field>
+
+
+    <button type="submit" mat-button mat-flat-button color="primary">
+      <mat-icon>save</mat-icon>
+      Crear cuenta
+    </button>
+
+  </form>
+  <div class="flex justify-content-end mt-5">
+    <a routerLink="/auth/login">¿Ya tienes cuenta?</a>
+  </div>
+
+</div>

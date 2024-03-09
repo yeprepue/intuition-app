@@ -1,1 +1,26 @@
-<p>login-page works!</p>
+
+<div class="flex flex-column">
+
+  <span class="text-lg mb-4">Login</span>
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input type="email" formControlName="email" matInput placeholder="Nombre de usuario">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input type="password" formControlName="password" matInput placeholder="Contraseña">
+  </mat-form-field>
+
+  <button mat-button mat-flat-button color="primary">
+    <mat-icon>save</mat-icon>
+    Ingresar
+  </button>
+  </form>
+
+  <div class="flex justify-content-end mt-5">
+    <a routerLink="/auth/register">¿Ya tienes cuenta?</a>
+  </div>
+
+</div>
