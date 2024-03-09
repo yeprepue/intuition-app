@@ -1,4 +1,4 @@
-<div class="flex flex-column">
+<!-- <div class="flex flex-column">
   <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
     <span class="text-lg mb-4">Registro</span>
 
@@ -40,7 +40,7 @@
     </mat-form-field>
 
 
-    <button type="submit" mat-button mat-flat-button color="primary">
+    <button type="" mat-button mat-flat-button color="primary">
       <mat-icon>save</mat-icon>
       Crear cuenta
     </button>
@@ -50,4 +50,61 @@
     <a routerLink="/auth/login">¿Ya tienes cuenta?</a>
   </div>
 
-</div>
+</div> -->
+<form [formGroup]="registerForm" (ngSubmit)="registerUser()" class="login100-form">
+  <span class="login100-form-title p-b-49">
+    Registro
+  </span>
+
+  <div class="wrap-input100 m-b-23">
+    <span class="label-input100">Nombre</span>
+    <input class="input100" type="text" formControlName="firstname">
+    <span class="focus-input100"></span>
+  </div>
+
+  <div class="wrap-input100 m-b-23">
+    <span class="label-input100">Apellido</span>
+    <input class="input100" type="text" formControlName="lastname">
+    <span class="focus-input100"></span>
+  </div>
+  <div class="wrap-input100 m-b-23">
+    <span class="label-input100">Correo</span>
+    <input class="input100" type="email" formControlName="email">
+    <span class="focus-input100"></span>
+  </div>
+  <div class="wrap-input100 m-b-23">
+    <span class="label-input100">Contraseña</span>
+    <input class="input100" type="password" formControlName="password">
+    <span class="focus-input100"></span>
+  </div>
+  <div class="wrap-input100 m-b-23">
+    <span class="label-input100">rol</span>
+    <input class="input100" type="text" formControlName="rol">
+    <span class="focus-input100"></span>
+  </div>
+
+  <div class="container wrap-input100 m-b-23" *ngFor="let question of   questionData; let i = index">
+    <span>{{question.question_name}}</span>
+    <input class="input100" type="text" formControlName="answer{{i}}">
+  </div>
+
+
+  <div class="container-login100-form-btn">
+    <div class="wrap-login100-form-btn">
+      <div class="login100-form-bgbtn"></div>
+      <button class="login100-form-btn" type="submit">
+        Crear cuenta
+      </button>
+    </div>
+  </div>
+
+  <div class="flex-col-c p-t-60">
+    <span class="txt1 p-b-17">
+      ¿Ya tienes cuenta?
+    </span>
+
+    <a routerLink="/auth/login" class="txt2">
+      Iniciar sesión aquí
+    </a>
+  </div>
+</form>
