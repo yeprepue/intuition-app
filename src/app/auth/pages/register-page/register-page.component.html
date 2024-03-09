@@ -78,14 +78,15 @@
     <span class="focus-input100"></span>
   </div>
   <div class="wrap-input100 m-b-23">
-    <span class="label-input100">rol</span>
+    <span class="label-input100">Rol</span>
     <input class="input100" type="text" formControlName="rol">
     <span class="focus-input100"></span>
   </div>
 
-  <div class="container wrap-input100 m-b-23" *ngFor="let question of   questionData; let i = index">
-    <span>{{question.question_name}}</span>
+  <div class="wrap-input100 m-b-23" *ngFor="let question of   questionData; let i = index">
+    <span class="label-input100">{{question.question_name}}</span>
     <input class="input100" type="text" formControlName="answer{{i}}">
+    <span class="focus-input100"></span>
   </div>
 
 
