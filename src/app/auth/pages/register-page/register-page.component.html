@@ -74,44 +74,51 @@
   </div>
   <div class="wrap-input100 m-b-23">
     <span class="label-input100">Contraseña</span>
-    <input class="input100" type="password" formControlName="password">
+    <div class="password-input-container">
+      <input class="input100" type="password" formControlName="password">
+      <button mat-icon-button type="button" (click)="togglePasswordVisibility()">
+        <mat-icon>{{ passwordVisible ? 'visibility' : 'visibility_off' }}</mat-icon>
+      </button>
+    </div>
     <span class="focus-input100"></span>
   </div>
+  <div *ngIf="registerForm?.get('password')?.hasError('pattern') && registerForm?.get('password')?.touched"
+    class="text-red-100 error-messege">
+    La contraseña debe tener al menos una minúscula, una mayúscula, un dígito y un carácter especial.
+  </div>
+  <div *ngIf="registerForm?.get('password')?.hasError('minlength') && registerForm?.get('password')?.touched"
+    class="text-red-100 error-messege">
+    La contraseña debe tener al menos 8 caracteres.
+  </div>
+  <br>
   <div class="wrap-input100 m-b-23">
     <span class="label-input100">Telefono</span>
     <input class="input100" type="text" formControlName="phone">
     <span class="focus-input100"></span>
   </div>
   <div class="wrap-input100 m-b-23">
-    <mat-form-field appearance="fill">
-      <mat-label>País</mat-label>
-      <mat-select formControlName="country">
-        <mat-option value="Colombia">Colombia</mat-option>
-        <mat-option value="Perú">Perú</mat-option>
-        <mat-option value="Bolivia">Bolivia</mat-option>
-      </mat-select>
-    </mat-form-field>
+    <span class="label-input100">País</span>
+    <select class="input100" formControlName="country">
+      <option value="Colombia">Colombia</option>
+      <option value="Perú">Perú</option>
+      <option value="Bolivia">Bolivia</option>
+    </select>
+    <span class="focus-input100"></span>
   </div>
-
   <div class="wrap-input100 m-b-23">
-    <mat-form-field appearance="fill">
-      <mat-label>Rol</mat-label>
-      <mat-select formControlName="role">
-        <mat-option value="Analista">Analista</mat-option>
-        <mat-option value="Colombia">Comercial</mat-option>
-        <mat-option value="Administrador">Administrador</mat-option>
-      </mat-select>
-    </mat-form-field>
+    <span class="label-input100">Rol</span>
+    <select class="input100" formControlName="role">
+      <option value="Analista">Analista</option>
+      <option value="Comercial">Comercial</option>
+      <option value="Administrador">Administrador</option>
+    </select>
+    <span class="focus-input100"></span>
   </div>
-
-
   <div class="wrap-input100 m-b-23" *ngFor="let question of questionData; let i = index">
     <span class="label-input100">{{question.question_name}}</span>
     <input class="input100" type="text" formControlName="answer{{i}}">
     <span class="focus-input100"></span>
   </div>
-
-
   <div class="container-login100-form-btn">
     <div class="wrap-login100-form-btn">
       <div class="login100-form-bgbtn"></div>
@@ -120,7 +127,6 @@
       </button>
     </div>
   </div>
-
   <div class="flex-col-c p-t-60">
     <span class="txt1 p-b-17">
       ¿Ya tienes cuenta?

@@ -9,11 +9,15 @@ import { Router } from '@angular/router';
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
   styles: [
+    `.error-message {
+      color: red;
+    }`
   ]
 })
 export class RegisterPageComponent implements OnInit {
   registerForm!: FormGroup;
   public questionData: any = [];
+  public passwordVisible: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -32,7 +36,7 @@ export class RegisterPageComponent implements OnInit {
     this.registerForm = this.fb.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
-      password: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$/)]],
       country: ['', Validators.required],
       role: ['', Validators.required],
       phone: ['', Validators.required],
@@ -42,6 +46,9 @@ export class RegisterPageComponent implements OnInit {
       answer2: ['', Validators.required],
       answer3: ['', Validators.required],
     });
+  }
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible;
   }
 
   registerUser() {
