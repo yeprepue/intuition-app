@@ -8,6 +8,36 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   selector: 'app-questions',
   templateUrl: './questions.component.html',
   styles: [
+    ` .question-container {
+        margin-bottom: 20px;
+      }
+
+    .question-card {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      background-color: #5ee268;
+    }
+
+    .question-card:hover {
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .question-name {
+      margin-bottom: 10px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .edit-button {
+      background-color: #2b0ce2;
+      color: white;
+    }
+
+    .edit-button:hover {
+      background-color: #f6e2af;
+    }
+`
   ]
 })
 export class QuestionsComponent implements OnInit {

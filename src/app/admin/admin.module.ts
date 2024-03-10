@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CardComponent } from './components/card/card.component';
 import { UserImagePipe } from './pipes/userImage.pipe';
 import { NewUserComponent } from './pages/new-user/new-user.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -26,7 +27,9 @@ import { NewUserComponent } from './pages/new-user/new-user.component';
     CommonModule,
     AdminRoutingModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FlexLayoutModule
+
   ]
 })
 export class AdminModule { }

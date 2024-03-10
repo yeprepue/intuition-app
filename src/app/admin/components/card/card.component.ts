@@ -30,6 +30,9 @@ import { User } from 'src/app/auth/interfaces/users.interfaces';
 
       .spacer {
         flex-grow: 1;
+      }
+      .user-card-container {
+       margin-bottom: 20px;
       }`
   ]
 })

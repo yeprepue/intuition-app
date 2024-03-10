@@ -1,3 +1,6 @@
+
+<h1>Preguntas</h1>
+<mat-divider></mat-divider>
 <div *ngIf="questions" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start">
   <div fxFlex="4" *ngIf="!editable && questions.length <4">
     <form [formGroup]="questionForm" (ngSubmit)="createQuestion()">
@@ -25,14 +28,18 @@
     </form>
   </div>
 
-  <div fxLayout="row" fxLayoutAlign="start" *ngFor="let question of questions">
-    <div fxFlex="4">
-      <mat-card>
+  <div fxLayout="row wrap" fxLayoutGap="16px" class="question-container">
+    <div fxFlex="25%" *ngFor="let question of questions" class="mt-2">
+      <mat-card class="question-card">
         <mat-card-content>
-          <label>{{ question.question_name }}</label>
-          <button mat-button class="" (click)="editQuestion(question)">Editar</button>
+          <h3 class="question-name">{{ question.question_name }}</h3>
+          <button mat-button class="edit-button" (click)="editQuestion(question)">
+            <mat-icon>edit</mat-icon>
+            Editar
+          </button>
         </mat-card-content>
       </mat-card>
     </div>
   </div>
+
 </div>

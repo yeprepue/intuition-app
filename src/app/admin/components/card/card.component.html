@@ -1,37 +1,36 @@
-<mat-card class="user-card">
-  <mat-card-header>
-    <mat-card-title>{{ user.firstname }}</mat-card-title>
-    <mat-card-subtitle>{{ user.lastname }}</mat-card-subtitle>
-  </mat-card-header>
+<div fxLayout="row wrap" [fxLayoutGap.xs]="8" [fxLayoutGap.sm]="16" class="user-card-container">
+  <mat-card class="user-card">
+    <mat-card-header>
+      <mat-card-title>{{ user.firstname }}</mat-card-title>
+      <mat-card-subtitle>{{ user.lastname }}</mat-card-subtitle>
+    </mat-card-header>
 
-  <div class="image-container">
-    <img mat-card-image [src]="'/assets/users/' + user.id + '.jpeg'" alt="Foto de {{ user.firstname }}">
-  </div>
+    <div class="image-container">
+      <img mat-card-image [src]="'/assets/users/' + user.id + '.jpeg'" alt="Foto de {{ user.firstname }}">
+    </div>
 
-  <mat-card-content class="mt-2">
-    <h4>{{ user.email }}</h4>
-    <p>
-      <strong>País: </strong>{{ user.country }}
-      <br>
-      <mat-chip-listbox>
-        <mat-chip>
-          {{ user.role }}
-        </mat-chip>
-      </mat-chip-listbox>
-    </p>
-  </mat-card-content>
-  <mat-divider></mat-divider>
-  <mat-card-actions>
-    <button mat-button mat-raised color="primary" [routerLink]="['/users/edit', user.id]">
-      <mat-icon>edit</mat-icon>
-      Editar
-    </button>
+    <mat-card-content class="mt-2">
+      <h4>{{ user.email }}</h4>
+      <p>
+        <strong>País: </strong>{{ user.country }}
+        <br>
+        <mat-chip-listbox>
+          <mat-chip>{{ user.role }}</mat-chip>
+        </mat-chip-listbox>
+      </p>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions fxLayout="row" fxLayoutAlign="space-between center">
+      <button mat-button mat-raised color="primary" [routerLink]="['/users/edit', user.id]">
+        <mat-icon>edit</mat-icon>
+        Editar
+      </button>
 
-    <span class="spacer"></span>
+      <button mat-button mat-raised [routerLink]="['/user', user.id]">
+        <mat-icon>more_horiz</mat-icon>
+        Más
+      </button>
+    </mat-card-actions>
+  </mat-card>
 
-    <button mat-button mat-raised [routerLink]="['/user', user.id]">
-      <mat-icon>more_horiz</mat-icon>
-      Más
-    </button>
-  </mat-card-actions>
-</mat-card>
+</div>
