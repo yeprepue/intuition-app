@@ -16,14 +16,14 @@ export class LayoutAdminComponent {
     { label: 'Users', icon:'person', url:'./users' },
 
   ]
-  // constructor(
-  //     private authService :AuthService,
-  //     private router : Router
-  // ){}
+  constructor(
+      private authService :AuthService,
+      private router : Router
+  ){}
 
-  // onLogout() {
-  //   this.authService.logout();
-  //   this.router.navigate(['/auth/login'])
-  // }
+  onLogout() {
+    this.authService.logout();
+    this.router.navigate(['/auth/login'])
+  }
 
 }

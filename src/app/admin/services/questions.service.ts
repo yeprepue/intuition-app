@@ -1,10 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { User } from 'src/app/auth/interfaces/users.interfaces';
 import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class QuestionsService {
 
   private baseUrl: string = environment.baseUrl;
@@ -17,5 +20,13 @@ export class QuestionsService {
 
   createQuestion(data: any) {
     return this.http.post(`${this.baseUrl}/questions`, data)
+  }
+
+  updateQuestion(data: any, id: number) {
+    return this.http.put(`${this.baseUrl}/questions/${id}`, data)
+  }
+
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.baseUrl}/user`)
   }
 }

@@ -6,4 +6,5 @@ export interface User {
   lastname: string,
   phone: string,
   role:string,
+  alt_img?: string
 }

@@ -2,6 +2,8 @@ import { Component, NgModule, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { QuestionsService } from 'src/app/admin/services/questions.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-page',
@@ -12,13 +14,21 @@ import { QuestionsService } from 'src/app/admin/services/questions.service';
 export class RegisterPageComponent implements OnInit {
   registerForm!: FormGroup;
   public questionData: any = [];
+
   constructor(
     private fb: FormBuilder,
     private registerService: AuthService,
-    private questionService: QuestionsService
+    private questionService: QuestionsService,
+    private _snackBar: MatSnackBar,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
+    this.initForm();
+    this.getQuestions();
+  }
+
+  initForm() {
     this.registerForm = this.fb.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
@@ -32,8 +42,6 @@ export class RegisterPageComponent implements OnInit {
       answer2: ['', Validators.required],
       answer3: ['', Validators.required],
     });
-
-    this.getQuestions();
   }
 
   registerUser() {
@@ -48,11 +56,20 @@ export class RegisterPageComponent implements OnInit {
     });
 
     if (this.registerForm.valid) {
+
       Object.assign(this.registerForm.value, { questions: formData });
       this.registerService.register(this.registerForm.value).
         subscribe((user: any) => {
-          // if (!user) return;
-          console.log('ok')
+          if (!user) return;
+          this._snackBar.open("Guardado correctamente", "Cerrar", {
+            duration: 3000,
+            horizontalPosition: 'end',
+            verticalPosition: 'top',
+          });
+
+          setTimeout(() => {
+            this.router.navigate(['auth/login']);
+          }, 3000);
         },
           (error) => {
             console.log(error);

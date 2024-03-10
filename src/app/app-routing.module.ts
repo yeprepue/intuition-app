@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Error404pageComponent } from './shared/pages/error404page/error404page.component';
+import { MaterialModule } from './material/material.module';
 
 const routes: Routes = [
   {
@@ -27,7 +28,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),
+  MaterialModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

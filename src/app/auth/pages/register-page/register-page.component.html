@@ -78,12 +78,34 @@
     <span class="focus-input100"></span>
   </div>
   <div class="wrap-input100 m-b-23">
-    <span class="label-input100">Rol</span>
-    <input class="input100" type="text" formControlName="rol">
+    <span class="label-input100">Telefono</span>
+    <input class="input100" type="text" formControlName="phone">
     <span class="focus-input100"></span>
   </div>
+  <div class="wrap-input100 m-b-23">
+    <mat-form-field appearance="fill">
+      <mat-label>País</mat-label>
+      <mat-select formControlName="country">
+        <mat-option value="Colombia">Colombia</mat-option>
+        <mat-option value="Perú">Perú</mat-option>
+        <mat-option value="Bolivia">Bolivia</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
 
-  <div class="wrap-input100 m-b-23" *ngFor="let question of   questionData; let i = index">
+  <div class="wrap-input100 m-b-23">
+    <mat-form-field appearance="fill">
+      <mat-label>Rol</mat-label>
+      <mat-select formControlName="role">
+        <mat-option value="Analista">Analista</mat-option>
+        <mat-option value="Colombia">Comercial</mat-option>
+        <mat-option value="Administrador">Administrador</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+
+  <div class="wrap-input100 m-b-23" *ngFor="let question of questionData; let i = index">
     <span class="label-input100">{{question.question_name}}</span>
     <input class="input100" type="text" formControlName="answer{{i}}">
     <span class="focus-input100"></span>

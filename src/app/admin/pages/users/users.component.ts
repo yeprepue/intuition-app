@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+
+import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/auth/interfaces/users.interfaces';
+import { QuestionsService } from '../../services/questions.service';
 
 @Component({
   selector: 'app-users',
@@ -6,6 +9,23 @@ import { Component } from '@angular/core';
   styles: [
   ]
 })
-export class UsersComponent {
+
+export class UsersComponent implements OnInit {
+
+
+public users:any[] =[];
+
+constructor(private questionsService:QuestionsService){}
+
+
+ngOnInit(): void {
+  this.questionsService.getUsers().subscribe(
+    (users: User[]) => {
+      this.users = users;
+    }
+  );
+}
+
+
 
 }
