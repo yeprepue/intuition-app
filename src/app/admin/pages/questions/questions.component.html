@@ -1,6 +1,5 @@
 <h1>Preguntas</h1>
 <mat-divider></mat-divider>
-
 <div *ngIf="!editable && questions.length < 4" fxLayout="row" fxLayoutAlign="start">
   <div fxFlex="100">
     <form [formGroup]="questionForm" (ngSubmit)="createQuestion()">

@@ -14,6 +14,6 @@ export class UserImagePipe implements PipeTransform {
       return user.alt_img;
     }
 
-    return `/assets/users/${user.id}.jpg`;
+    return '/assets/users/' + user.id + '.jpeg';
   }
 }

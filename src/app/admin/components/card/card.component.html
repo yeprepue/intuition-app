@@ -1,4 +1,4 @@
-<div fxLayout="row wrap" [fxLayoutGap.xs]="8" [fxLayoutGap.sm]="16" class="user-card-container">
+<div fxLayout="row wrap"  class="user-card-container">
   <mat-card class="user-card">
     <mat-card-header>
       <mat-card-title>{{ user.firstname }}</mat-card-title>
@@ -6,7 +6,7 @@
     </mat-card-header>
 
     <div class="image-container">
-      <img mat-card-image [src]="'/assets/users/' + user.id + '.jpeg'" alt="Foto de {{ user.firstname }}">
+      <img mat-card-image [src]=" user | userImage" alt="Foto de {{ user.firstname }}">
     </div>
 
     <mat-card-content class="mt-2">
@@ -21,12 +21,12 @@
     </mat-card-content>
     <mat-divider></mat-divider>
     <mat-card-actions fxLayout="row" fxLayoutAlign="space-between center">
-      <button mat-button mat-raised color="primary" [routerLink]="['/users/edit', user.id]">
+      <!-- <button mat-button mat-raised color="primary" [routerLink]="['/admin/edit/', user.id]">
         <mat-icon>edit</mat-icon>
-        Editar
-      </button>
+        Editar -->
+      <!-- </button> -->
 
-      <button mat-button mat-raised [routerLink]="['/user', user.id]">
+      <button mat-button mat-raised [routerLink]="['/admin/user/', user.id]">
         <mat-icon>more_horiz</mat-icon>
         Más
       </button>

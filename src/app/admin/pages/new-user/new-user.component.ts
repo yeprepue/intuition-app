@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Routes } from '@angular/router';
 import { UsersComponent } from '../users/users.component';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -15,7 +15,7 @@ import { User } from 'src/app/auth/interfaces/users.interfaces';
   styles: [
   ]
 })
-export class NewUserComponent {
+export class NewUserComponent implements OnInit{
 
 public userForm = new FormGroup({
   id:        new FormControl<string>(''),
@@ -27,6 +27,12 @@ public userForm = new FormGroup({
   role:      new FormControl<string>('', { nonNullable: true }),
 });
 
+public publishers = [
+  { id: 'Administrador', desc: 'Administrador' },
+  { id: 'Analista', desc: 'Analista' },
+  { id: 'Comercial', desc: 'Comercial' },
+];
+
 constructor(
     private questionsService:QuestionsService,
     private activatedRoute: ActivatedRoute,
@@ -34,10 +40,14 @@ constructor(
     private snackbar: MatSnackBar,
     private dialog: MatDialog,
 ){}
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
 // get currentUser():User{
 //   const user = this.userForm.value as User;
-//   return user;
+//  return user;
 // }
+
 
 }
