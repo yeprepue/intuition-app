@@ -8,11 +8,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
-  styles: [
-    `.error-message {
-      color: red;
-    }`
-  ]
+
 })
 export class RegisterPageComponent implements OnInit {
   registerForm!: FormGroup;

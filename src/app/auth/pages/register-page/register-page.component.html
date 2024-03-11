@@ -75,7 +75,7 @@
   <div class="wrap-input100 m-b-23">
     <span class="label-input100">Contraseña</span>
     <div class="password-input-container">
-      <input class="input100" type="password" formControlName="password">
+      <input class="input100" [type]="passwordVisible ? 'text' : 'password'" formControlName="password">
       <button mat-icon-button type="button" (click)="togglePasswordVisibility()">
         <mat-icon>{{ passwordVisible ? 'visibility' : 'visibility_off' }}</mat-icon>
       </button>
