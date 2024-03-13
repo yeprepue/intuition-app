@@ -46,18 +46,15 @@ export class LoginPageComponent implements OnInit {
             setTimeout(() => {
               this.router.navigate(['admin/users']);
             }, 3000);
-
-
           } else {
-            this.router.navigate([`admin/new-users/${user.id}}`]);
+            console.log(user.id);
+            this.router.navigate([`admin/user/${user.id}`]);
           }
         },
           (error) => {
             alert('Credenciales incorrectas');
           }
         );
-
     }
-
   }
 }

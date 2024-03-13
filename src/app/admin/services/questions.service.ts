@@ -30,9 +30,9 @@ export class QuestionsService {
     return this.http.get<User[]>(`${this.baseUrl}/user`)
   }
 
-  getUsersById(id: number): Observable<User | undefined> {
+  getUsersById(id: number): Observable<any | undefined> {
     console.log(id);
-    return this.http.get<User>(`${this.baseUrl}/user/${id}`).pipe(
+    return this.http.get<any>(`${this.baseUrl}/user/${id}`).pipe(
       catchError(Error=> of(undefined))
     );
   }

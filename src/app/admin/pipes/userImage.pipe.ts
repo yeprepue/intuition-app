@@ -9,11 +9,6 @@ export class UserImagePipe implements PipeTransform {
     if (!user.id && !user.alt_img) {
       return 'assets/no-image.png';
     }
-
-    if (user.alt_img) {
-      return user.alt_img;
-    }
-
-    return '/assets/users/' + user.id + '.jpeg';
+    return user.alt_img ? user.alt_img : user.image;
   }
 }

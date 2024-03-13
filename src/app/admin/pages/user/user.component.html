@@ -6,29 +6,46 @@
   </mat-grid-list>
 </ng-template>
 
+<div class="container">
+  <div *ngIf="user; else divLoading" class="grid p-2">
+    <mat-card class="col-6 sm:col-6 small-image">
+      <mat-card-header>
+        <mat-card-title>
+          <span class="login100-form-title p-b-49">Perfil de usuario</span>
+        </mat-card-title>
+        <mat-card-subtitle>{{ user.role }}</mat-card-subtitle>
+        <mat-card-subtitle>{{ user.firstname}} {{user.firstname}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <img [src]="user | userImage" [alt]="" mat-card-image class="small-image" />
+      </mat-card-content>
+    </mat-card>
 
-<div *ngIf="user; else divLoading" class="grid p-2">
-  <mat-card class="col-12 sm:col-6">
-    <mat-card-header>
-      <mat-card-title>{{ user.role }}</mat-card-title>
-      <mat-card-subtitle>{{ user.firstname}} {{user.firstname}}</mat-card-subtitle>
-    </mat-card-header>
-    <img [src]="user | userImage" [alt]="" mat-card-image />
-  </mat-card>
-  <mat-card class="col-12 sm:col-6">
-    <mat-card-header>
-      <mat-card-title>Información</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <mat-list>
-        <mat-list-item>{{user.country}}</mat-list-item>
-        <mat-list-item>{{ user.email }}</mat-list-item>
-        <mat-list-item>{{user.phone }}</mat-list-item>
-        <mat-list-item>{{ user.role}}</mat-list-item>
-      </mat-list>
-      <button mat-button color="warn" (click)="goBack()">
-        Regresar
-      </button>
-    </mat-card-content>
-  </mat-card>
+    <mat-card class="col-6 sm:col-6 small-image">
+      <mat-card-header>
+        <mat-card-title>
+          <span class="login100-form-title p-b-49">Información</span>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item>{{user.country}}</mat-list-item>
+          <mat-list-item>{{ user.email }}</mat-list-item>
+          <mat-list-item>{{user.phone }}</mat-list-item>
+          <mat-list-item>{{ user.role}}</mat-list-item>
+        </mat-list>
+
+        <mat-card *ngFor="let answer of userAnswer" class="question-card">
+          <mat-card-content>
+            <h3 class="question-name">{{ answer.question_name }}</h3>
+            <h3 class="question-name">{{ answer.answer }}</h3>
+          </mat-card-content>
+        </mat-card>
+
+        <button mat-button color="warn" (click)="goBack()">
+          Regresar
+        </button>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>

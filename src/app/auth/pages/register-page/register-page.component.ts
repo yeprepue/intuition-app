@@ -4,6 +4,8 @@ import { AuthService } from '../../services/auth.service';
 import { QuestionsService } from 'src/app/admin/services/questions.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { FileUploadService } from 'src/services/file-upload.service';
+import { User } from '../../interfaces/users.interfaces';
 
 @Component({
   selector: 'app-register-page',
@@ -14,14 +16,22 @@ export class RegisterPageComponent implements OnInit {
   registerForm!: FormGroup;
   public questionData: any = [];
   public passwordVisible: boolean = false;
+  public imagen?: File;
+  public selectedImage: any;
+  public image: any;
+  public file: any;
+  public fileName: any;
+
 
   constructor(
     private fb: FormBuilder,
     private registerService: AuthService,
     private questionService: QuestionsService,
     private _snackBar: MatSnackBar,
-    private router: Router
-  ) { }
+    private router: Router,
+    private fileUploadService: FileUploadService,
+  ) {
+  }
 
   ngOnInit(): void {
     this.initForm();
@@ -41,28 +51,47 @@ export class RegisterPageComponent implements OnInit {
       answer1: ['', Validators.required],
       answer2: ['', Validators.required],
       answer3: ['', Validators.required],
+
     });
   }
+
+  onFileChange(event: Event) {
+    const files = (event.target as HTMLInputElement).files;
+    if (files && files.length > 0) {
+      const file = files[0];
+      this.registerForm.patchValue({
+        imagen: file
+      });
+    }
+  }
+
+  onSubmit() {
+
+  }
+
   togglePasswordVisibility() {
     this.passwordVisible = !this.passwordVisible;
   }
 
   registerUser() {
-    let formData: any = [];
+    let sendQuestion: any = [];
 
     this.questionData.forEach((question: any, index: number) => {
       let answer = `answer${index}`
-      formData.push({
+      sendQuestion.push({
         id: question.id,
         answer: this.registerForm.value[answer]
       });
     });
 
+
     if (this.registerForm.valid) {
 
-      Object.assign(this.registerForm.value, { questions: formData });
-      this.registerService.register(this.registerForm.value).
+      let formData = this.formatedData(this.file, sendQuestion);
+
+      this.registerService.register(formData).
         subscribe((user: any) => {
+
           if (!user) return;
           this._snackBar.open("Guardado correctamente", "Cerrar", {
             duration: 3000,
@@ -81,6 +110,21 @@ export class RegisterPageComponent implements OnInit {
     }
   }
 
+  formatedData(file: File, sendQuestion: any) {
+    const formData: any = new FormData();
+    formData.append('image', file, file.name);
+    formData.append('firstname', this.registerForm.get('firstname')!.value);
+    formData.append('lastname', this.registerForm.get('lastname')!.value);
+    formData.append('phone', this.registerForm.get('phone')!.value);
+    formData.append('email', this.registerForm.get('email')!.value);
+    formData.append('password', this.registerForm.get('password')!.value);
+    formData.append('country', this.registerForm.get('country')!.value);
+    formData.append('role', this.registerForm.get('role')!.value);
+    formData.append('questions', JSON.stringify(sendQuestion));
+
+    return formData;
+  }
+
   getQuestions() {
     this.questionService.getQuestions().
       subscribe((questions: any) => {
@@ -92,6 +136,39 @@ export class RegisterPageComponent implements OnInit {
           console.log(error);
         }
       );
+  }
 
+  subirImagen(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const files = target.files;
+    if (files && files.length > 0 && files.length < 2) {
+      const file = files[0];
+      this.file = file;
+      this.fileName = this.file.name;
+
+
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.selectedImage = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+
+  guardarImagen(userId: number) {
+    if (this.imagen) {
+      this.fileUploadService.uploadImage(this.imagen, userId)
+        .then((response) => {
+          console.log('Imagen guardada exitosamente', response);
+        })
+        .catch((error) => {
+          console.error('Error al guardar la imagen', error);
+        });
+    } else {
+      console.error('Falta la imagen.');
+    }
   }
 }
+
+
