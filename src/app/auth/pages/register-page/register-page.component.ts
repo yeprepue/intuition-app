@@ -38,6 +38,7 @@ export class RegisterPageComponent implements OnInit {
     this.getQuestions();
   }
 
+
   initForm() {
     this.registerForm = this.fb.group({
       firstname: ['', Validators.required],
@@ -125,6 +126,9 @@ export class RegisterPageComponent implements OnInit {
     return formData;
   }
 
+
+
+
   getQuestions() {
     this.questionService.getQuestions().
       subscribe((questions: any) => {
@@ -169,6 +173,36 @@ export class RegisterPageComponent implements OnInit {
       console.error('Falta la imagen.');
     }
   }
+
+
+  isValidField(field:string):boolean |null{
+    return this.registerForm.controls[field].errors
+    && this.registerForm.controls['firstname'].touched;
+  }
+
+  isValidFieldQuestion(field:string):boolean |null{
+    return this.registerForm.controls[field].errors
+    && this.registerForm.controls['firstname'].touched;
+  }
+
+
+ getFieldError(field:string):string | null {
+
+   if(!this.registerForm.controls[field]) return null;
+
+   const errors = this.registerForm.controls[field].errors || {};
+
+   for (const key of Object.keys(errors)) {
+      switch(key){
+       case 'required':return 'Este campo es requerido';
+       case 'minlength':return `Mínimo ${ errors['minlength'].requiredLength} caracteres.`;
+      }
+
+   }
+   return null;
+
+ }
+
 }
 
 
